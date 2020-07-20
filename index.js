@@ -40,4 +40,25 @@ async function getCourses() {
   console.log(coursesInDb);
 }
 
-async function updateCourse(id) {}
+async function updateCourse(id) {
+  const result = await Course.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        name: "Node Course",
+        author: "Abhinav",
+      },
+    },
+    {
+      new: true,
+    }
+  );
+  console.log(result);
+}
+
+async function removeCourse(_id) {
+  const result = await Course.deleteOne({ _id });
+  console.log(result);
+}
+
+removeCourse("5f15df2fc218b01dd8281232");
